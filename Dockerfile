@@ -23,8 +23,8 @@ COPY src/ /app/src/
 # Create data directory
 RUN mkdir -p /app/data
 
-# Change ownership of /app/.uv_cache to user 1000
-RUN chown -R 1000:1000 /app/.uv_cache
+# Change ownership of /app to user 1000
+RUN chown -R 1000:1000 /app
 
 # Switch to user 1000
 USER 1000
