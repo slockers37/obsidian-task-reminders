@@ -5,6 +5,9 @@ FROM python:3.12-slim
 # Set the working directory in the container
 WORKDIR /app
 
+# Set UV_CACHE_DIR to a writable location
+ENV UV_CACHE_DIR=/app/.uv_cache
+
 # Create a non-root user and group
 RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
 
