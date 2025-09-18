@@ -8,9 +8,6 @@ WORKDIR /app
 # Set UV_CACHE_DIR to a writable location
 ENV UV_CACHE_DIR=/app/.uv_cache
 
-# Create a non-root user and group
-RUN addgroup --system --gid 1000 appgroup && adduser --system --uid 1000 --ingroup appgroup appuser
-
 # Install uv
 RUN pip install uv
 
@@ -23,14 +20,11 @@ RUN uv pip install --system -r pyproject.toml
 # Copy the rest of the application code to the container
 COPY src/ /app/src/
 
-# Change ownership of /app to the non-root user
-RUN chown -R appuser:appgroup /app
+# Create data directory
+RUN mkdir -p /app/data
 
-# Create data directory and set ownership
-RUN mkdir -p /app/data && chown -R appuser:appgroup /app/data
-
-# Switch to the non-root user
-USER appuser
+# Switch to user 1000
+USER 1000
 
 # Set the command to run the application
 CMD ["uv", "run", "src/main.py"]
