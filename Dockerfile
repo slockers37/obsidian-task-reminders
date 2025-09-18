@@ -26,6 +26,9 @@ COPY src/ /app/src/
 # Change ownership of /app to the non-root user
 RUN chown -R appuser:appgroup /app
 
+# Create data directory and set ownership
+RUN mkdir -p /app/data && chown -R appuser:appgroup /app/data
+
 # Switch to the non-root user
 USER appuser
 
