@@ -1,0 +1,12 @@
+vault_path: "/app/vault"
+timezone: "UTC+5:30"
+gotify:
+  url: "https://gotify.com"
+  # token should be set via GOTIFY_TOKEN environment variable
+retry:
+  max_attempts: 5
+  backoff_factor: 0.5
+
+database:
+  task_store_db_path: "/app/data/task_store.db"
+  scheduler_db_path: "/app/data/jobs.sqlite"
