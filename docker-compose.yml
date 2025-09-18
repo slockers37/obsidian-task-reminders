@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  obsidian-task-reminders:
+    build: .
+    container_name: obsidian-task-reminders
+    volumes:
+      - ./config.yml:/app/config.yml
+      - ./.env:/app/.env
+      - /path/to/your/obsidian/vault:/app/vault
+      - obsidian_task_reminders_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "ps aux | grep -q 'uv run src/main.py'"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  obsidian_task_reminders_data:

@@ -1,0 +1,20 @@
+[project]
+name = "obsidian-task-reminders"
+version = "0.1.0"
+description = "A task reminder system for Obsidian."
+dependencies = [
+    "watchdog",
+    "apscheduler",
+    "requests",
+    "pyyaml",
+    "python-dotenv",
+    "sqlalchemy",
+]
+
+[project.optional-dependencies]
+dev = ["ruff", "pytest"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
