@@ -9,7 +9,7 @@ WORKDIR /app
 ENV UV_CACHE_DIR=/app/.uv_cache
 
 # Create a non-root user and group
-RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+RUN addgroup --system --gid 1000 appgroup && adduser --system --uid 1000 --ingroup appgroup appuser
 
 # Install uv
 RUN pip install uv
