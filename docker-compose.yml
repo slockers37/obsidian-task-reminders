@@ -10,6 +10,7 @@ services:
       - /path/to/your/obsidian/vault:/app/vault
       - obsidian_task_reminders_data:/app/data
     restart: unless-stopped
+    command: sh -c "chown -R appuser:appgroup /app/data && uv run src/main.py"
     healthcheck:
       test: ["CMD-SHELL", "ps aux | grep -q 'uv run src/main.py'"]
       interval: 30s
